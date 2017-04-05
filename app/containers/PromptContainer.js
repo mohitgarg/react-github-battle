@@ -1,10 +1,16 @@
 var React = require('react');
+var transparentBg = require('../styles/index').transparentBg
 
 var PromptContainer = React.createClass({
+    getInitialState : function() {
+      return {
+          
+      }
+    },
     render:function() {
         console.log(this)
         return (
-          <div className="jumbotron col-sm-6 col-sm-offset-3 text-center">
+          <div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
               <h1>{this.props.route.header}</h1>
               <div className="col-sm-12">
                   <form>
