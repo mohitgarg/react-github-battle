@@ -25,7 +25,7 @@ function RepoGrid({repos}) {
         <li>
           <img className='avatar' src={repo.owner.avatar_url} alt={'Avatar for' + repo.owner.login}/>
         </li>
-        <li><a href={repo.html_url}>{repo.name}</a></li>
+        <li><a href={repo.html_url} target='_blank'>{repo.name}</a></li>
         <li>@{repo.owner.login}</li>
         <li>{repo.stargazers_count} stars</li>
         <li>{repo.forks} forks</li>
