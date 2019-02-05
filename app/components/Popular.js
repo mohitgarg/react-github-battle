@@ -1,7 +1,9 @@
 var React = require('react')
 var PropTypes = require('prop-types')
 var api = require('../utils/api')
+var Loading = require('./Loading')
 
+// Stateless Functional Components
 function SelectLanguage ({selectedLanguage, onSelect}) {
     var languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
     return (
@@ -30,7 +32,7 @@ function RepoGrid({repos}) {
         <li>{repo.stargazers_count} stars</li>
         <li>{repo.forks} forks</li>
       </ul>
-      </li> 
+      </li>
       ))}
     </ul>
   )
@@ -48,7 +50,7 @@ SelectLanguage.propTypes = {
 class Popular extends React.Component {
   constructor (props) {
     super(props)
-    
+
     this.state = {
       selectedLanguage:'All',
       repos:null
@@ -60,6 +62,7 @@ class Popular extends React.Component {
   }
   updateLanguage(lang) {
     this.setState({selectedLanguage:lang, repos:null})
+    console.log(api.fetchPopularRepos(lang))
     api.fetchPopularRepos(lang)
       .then((repos) => this.setState({repos}))
   }
@@ -67,7 +70,7 @@ class Popular extends React.Component {
     return (
       <div>
       <SelectLanguage selectedLanguage={this.state.selectedLanguage} onSelect={this.updateLanguage}/>
-      {!this.state.repos ? <p>Loading...</p>:<RepoGrid repos={this.state.repos} />}
+      {!this.state.repos ? <Loading speed={100}/>:<RepoGrid repos={this.state.repos} />}
       </div>
     )
   }

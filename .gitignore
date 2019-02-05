@@ -10,3 +10,4 @@ coverage
 *.bundle.js
 _site/
 .sass-cache/
+package-lock.json
